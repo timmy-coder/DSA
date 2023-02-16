@@ -44,7 +44,7 @@ class LinkedList:
             self.tail = None
         return current
     
-    #Shift method adds node emlement to the front of the linkedlist
+    #Shift method adds node element to the front of the linkedlist
     def shift(self, data):
         newNode = Node(data)
         if self.head is None:
@@ -55,5 +55,18 @@ class LinkedList:
             self.head = newNode
         self.length += 1
         return self
+    
+    #Unshift removes node element from the front of a linkedList
+    def unshift(self):
+        if self.head is None:
+            print("This luinked list is empty")
+            return
+        current = self.head
+        pre = self.head
+        current.next = current
+        pre = None
+        self.length += 1
+        return self
+    
             
             
