@@ -44,8 +44,8 @@ class LinkedList:
             self.tail = None
         return current
     
-    #Shift method adds node element to the front of the linkedlist
-    def shift(self, data):
+    #Unshift method adds node element to the front of the linkedlist
+    def unshift(self, data):
         newNode = Node(data)
         if self.head is None:
             self.head = newNode
@@ -56,17 +56,59 @@ class LinkedList:
         self.length += 1
         return self
     
-    #Unshift removes node element from the front of a linkedList
-    def unshift(self):
+    # Shift method removes node element from the front of the linkedlisy
+    def shift(self):
         if self.head is None:
-            print("This luinked list is empty")
-            return
+            print("The linkedlist is empty")
         current = self.head
-        pre = self.head
-        current.next = current
-        pre = None
+        self.head = self.head.next
+        self.length -= 1
+        if self.length == 1:
+            self.tail = None
+        #current.next = None
+        return current
+    
+    #The get method helps to get a particular node
+    def get(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        current = self.head
+        for i in range(index):
+            current = current.next
+        return current
+    
+    # The set method help to set a particular data in place of another data
+    def set(self,index, data):
+        current = self.get(index)
+        if current:
+            current.data = data
+            return True
+        return False
+        
+        
+    # The insert method is used to insert a particular node in a given space
+    
+    def insert(self, index, data):
+        if index < 0 or index >= self.length:
+            return False
+        if index == self.length:
+            return self.pop(data)
+        if index == 0:
+            return self.unshift(data)
+    
+        newNode = Node(data)
+        current = self.get(index -1)
+        current.next = newNode
+        current.next = newNode.next
         self.length += 1
-        return self
+        return True
+    
+        
+    
+        
+            
+    
+   
     
             
             
